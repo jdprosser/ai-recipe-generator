@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Loader, Placeholder } from "@aws-amplify/ui-react";
 import "./App.css";
 import { Amplify } from "aws-amplify";
-import type { Schema } from "../amplify/data/resource";
+import { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
 
@@ -25,7 +25,7 @@ function App() {
 
     try {
       const formData = new FormData(event.currentTarget);
-console.log(Object.fromEntries(formData.entries()));   
+      
       const { data, errors } = await amplifyClient.queries.askBedrock({
         ingredients: [formData.get("ingredients")?.toString() || ""],
       });
